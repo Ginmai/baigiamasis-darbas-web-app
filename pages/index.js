@@ -30,9 +30,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Link href="/addQuestion">
-        <h4 className={styles.addTutorial}>Add tutorial</h4>
-      </Link>
+
       {questions.map((question) => {
         return (
           <Card
