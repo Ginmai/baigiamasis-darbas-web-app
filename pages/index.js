@@ -11,25 +11,29 @@ import Link from "next/link";
 const Home = () => {
   const router = useRouter();
   const [questions, setQuestions] = useState([]);
+  const [token, setToken] = useState();
+
+  const checkUserToken = () => {
+    setToken(cookie.get("jwt_token"));
+  };
 
   const fetchQuestions = async () => {
     try {
       const response = await axios.get("http://localhost:3001/questions");
-      console.log(response);
       setQuestions(response.data.questions);
     } catch (err) {
-      console.log(err);
       router.push("/login");
     }
   };
 
   useEffect(() => {
     fetchQuestions();
+    checkUserToken();
   }, []);
 
   return (
     <>
-      <Header />
+      <Header token={token} />
 
       {questions.map((question) => {
         return (

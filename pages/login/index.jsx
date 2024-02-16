@@ -12,7 +12,6 @@ const Login = () => {
   const onClickButton = async () => {
     if (!email || !password) {
       console.log("please fill all the fields");
-
       return;
     }
 
@@ -28,7 +27,7 @@ const Login = () => {
       );
 
       if (response.status === 200) {
-        cookie.set("jwt_token", response.data.jwt);
+        cookie.set("jwt_token", response.data.jwt_token);
         router.push("/");
       }
     } catch (err) {

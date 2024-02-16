@@ -1,10 +1,14 @@
 import React from "react";
 import styles from "./styles.module.css";
+import Menu from "../Menu/Menu";
 
-const Header = () => {
+const Header = ({ token }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.logo}>Logo</div>
+      <div className={styles.menu}>
+        <Menu token={token} />
+      </div>
     </div>
   );
 };
