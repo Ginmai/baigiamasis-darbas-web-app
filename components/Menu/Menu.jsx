@@ -11,17 +11,17 @@ const Menu = ({ token }) => {
 
 const MenuAuthenticated = () => {
   return (
-    <ul>
-      <li>
-        <a href="">All questions</a>
-      </li>
-      <li>
-        <a href="">My questions</a>
-      </li>
-      <li>
-        <a href="">Add new question</a>
-      </li>
-    </ul>
+    <>
+      <a href="" className={styles.nav}>
+        All questions
+      </a>
+      <a href="my-questions" className={styles.nav}>
+        My questions
+      </a>
+      <a href="add" className={styles.nav + " " + styles.button}>
+        Add new question
+      </a>
+    </>
   );
 };
 

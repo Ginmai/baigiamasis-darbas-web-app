@@ -1,12 +1,22 @@
 .wrapper {
   height: 80px;
-  background-color: rgb(162, 149, 172);
   padding: 1rem;
   margin-bottom: 2rem;
   display: flex;
+  flex-direction: row;
+  columns: 2;
   align-items: center;
 }
 
 .logo {
   font-size: 2rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border: black 2px solid;
+  padding: 10px;
+  margin: 0 30px;
+}
+
+.menu {
+  width: auto;
+  float: right;
 }

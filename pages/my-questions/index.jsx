@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Card from "../components/Card/Card";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import styles from "../styles/Home.module.css";
+import MyCard from "../../components/MyCard/MyCard";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
 const Home = () => {
@@ -37,8 +37,8 @@ const Home = () => {
 
       {questions.map((question) => {
         return (
-          <Card
-            _id={questions._id}
+          <MyCard
+            _id={question._id}
             question_text={question.question_text}
             date={question.date}
             likes={question.likes}
