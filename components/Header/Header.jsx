@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./styles.module.css";
 import Menu from "../Menu/Menu";
+import styles from "./styles.module.css";
 
 const Header = ({ token }) => {
   return (

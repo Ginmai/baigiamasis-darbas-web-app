@@ -12,7 +12,7 @@ const Menu = ({ token }) => {
 const MenuAuthenticated = () => {
   return (
     <>
-      <a href="" className={styles.nav}>
+      <a href="/" className={styles.nav}>
         All questions
       </a>
       <a href="my-questions" className={styles.nav}>
@@ -27,17 +27,17 @@ const MenuAuthenticated = () => {
 
 const MenuPublic = () => {
   return (
-    <ul>
-      <li>
-        <a href="">All questions</a>
-      </li>
-      <li>
-        <a href="">Register</a>
-      </li>
-      <li>
-        <a href="login">Login</a>
-      </li>
-    </ul>
+    <>
+      <a href="/" className={styles.nav}>
+        All questions
+      </a>
+      <a href="register" className={styles.nav}>
+        Register
+      </a>
+      <a href="login" className={styles.nav}>
+        Login
+      </a>
+    </>
   );
 };
 

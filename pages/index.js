@@ -13,28 +13,57 @@ const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [token, setToken] = useState();
 
-  // const checkUserToken = () => {
-  //   setToken(cookie.get("jwt_token"));
-  // };
+  const checkUserToken = () => {
+    setToken(cookie.get("jwt_token"));
+  };
+  const headers = {
+    authorization: cookie.get("jwt_token"),
+  };
 
   const fetchQuestions = async () => {
-    const headers = {
-      authorization: cookie.get("jwt_token"),
-    };
     try {
-      const response = await axios.get("http://localhost:3001/questions", {
-        headers: headers,
-      });
+      const response = await axios.get("http://localhost:3001/questions");
       setQuestions(response.data.questions);
     } catch (err) {
       console.log(err);
-      router.push("/login");
+    }
+  };
+
+  const clickLike = async (_id) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/questions/${_id}/like`,
+        {},
+        { headers: headers }
+      );
+
+      if (response.status === 200) {
+        fetchQuestions();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const clickDislike = async (_id) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/questions/${_id}/dislike`,
+        {},
+        { headers: headers }
+      );
+
+      if (response.status === 200) {
+        fetchQuestions();
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
     fetchQuestions();
-    // checkUserToken();
+    checkUserToken();
   }, []);
 
   return (
@@ -50,6 +79,8 @@ const Home = () => {
               date={question.date}
               likes={question.likes}
               dislikes={question.dislikes}
+              clickLike={clickLike}
+              clickDislike={clickDislike}
             />
           </div>
         );

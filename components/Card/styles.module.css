@@ -8,3 +8,17 @@
   text-decoration: none;
   color: black;
 }
+
+.button {
+  font-size: 32px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.button:hover {
+  color: grey;
+}
+.amount {
+  font-size: 2rem;
+}
