@@ -13,22 +13,28 @@ const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [token, setToken] = useState();
 
-  const checkUserToken = () => {
-    setToken(cookie.get("jwt_token"));
-  };
+  // const checkUserToken = () => {
+  //   setToken(cookie.get("jwt_token"));
+  // };
 
   const fetchQuestions = async () => {
+    const headers = {
+      authorization: cookie.get("jwt_token"),
+    };
     try {
-      const response = await axios.get("http://localhost:3001/questions");
+      const response = await axios.get("http://localhost:3001/questions", {
+        headers: headers,
+      });
       setQuestions(response.data.questions);
     } catch (err) {
+      console.log(err);
       router.push("/login");
     }
   };
 
   useEffect(() => {
     fetchQuestions();
-    checkUserToken();
+    // checkUserToken();
   }, []);
 
   return (
@@ -37,15 +43,18 @@ const Home = () => {
 
       {questions.map((question) => {
         return (
-          <Card
-            _id={questions._id}
-            question_text={question.question_text}
-            date={question.date}
-            likes={question.likes}
-            dislikes={question.dislikes}
-          />
+          <div key={question._id}>
+            <Card
+              _id={question._id}
+              question_text={question.question_text}
+              date={question.date}
+              likes={question.likes}
+              dislikes={question.dislikes}
+            />
+          </div>
         );
       })}
+
       <Footer />
     </>
   );
