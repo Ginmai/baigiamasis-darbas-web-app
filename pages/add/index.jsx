@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 
 const Add = () => {
   const router = useRouter();
   const [text, setText] = useState("");
+  const [token, setToken] = useState();
+
+  const checkUserToken = () => {
+    setToken(cookie.get("jwt_token"));
+  };
 
   const onClickButton = async () => {
     if (!text) {
@@ -38,8 +45,14 @@ const Add = () => {
     }
   };
 
+  useEffect(() => {
+    checkUserToken();
+  }, []);
+
   return (
-    <div>
+    <>
+      <Header token={token} />
+
       <div className={styles.form}>
         <h1>Create new question</h1>
         <textarea
@@ -52,7 +65,9 @@ const Add = () => {
 
         <button onClick={onClickButton}>Create</button>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 };
 

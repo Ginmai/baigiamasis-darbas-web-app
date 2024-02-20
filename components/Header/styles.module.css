@@ -1,11 +1,11 @@
 .wrapper {
   height: 80px;
   padding: 1rem;
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
   columns: 2;
   align-items: center;
+  background-color: rgb(229, 250, 225);
 }
 
 .logo {

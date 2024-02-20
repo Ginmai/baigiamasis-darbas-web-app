@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 
@@ -9,6 +11,11 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState();
+
+  const checkUserToken = () => {
+    setToken(cookie.get("jwt_token"));
+  };
 
   const onClickButton = async () => {
     if (!email || !password || !name) {
@@ -37,8 +44,14 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    checkUserToken();
+  }, []);
+
   return (
-    <div>
+    <>
+      <Header token={token} />
+
       <div className={styles.form}>
         <h1>Register</h1>
         <input
@@ -64,7 +77,9 @@ const Register = () => {
         />
         <button onClick={onClickButton}>Register</button>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 };
 

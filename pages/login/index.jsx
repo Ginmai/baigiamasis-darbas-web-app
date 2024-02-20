@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 
@@ -8,6 +10,11 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState();
+
+  const checkUserToken = () => {
+    setToken(cookie.get("jwt_token"));
+  };
 
   const onClickButton = async () => {
     if (!email || !password) {
@@ -35,8 +42,14 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    checkUserToken();
+  }, []);
+
   return (
-    <div>
+    <>
+      <Header token={token} />
+
       <div className={styles.form}>
         <h1>Login</h1>
         <input
@@ -55,7 +68,9 @@ const Login = () => {
         />
         <button onClick={onClickButton}>Login</button>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 };
 
