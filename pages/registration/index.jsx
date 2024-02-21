@@ -29,14 +29,14 @@ const Register = () => {
         name: name,
         password: password,
       };
-      console.log(data);
+
       const response = await axios.post(
         "http://localhost:3001/users/register",
         data
       );
 
       if (response.status === 200) {
-        cookie.set("jwt_token", response.data.jwt);
+        cookie.set("jwt_token", response.data.jwt_token);
         router.push("/");
       }
     } catch (err) {

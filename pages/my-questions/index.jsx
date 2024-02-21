@@ -5,8 +5,6 @@ import axios from "axios";
 import MyCard from "../../components/MyCard/MyCard";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import styles from "../../styles/Home.module.css";
-import Link from "next/link";
 
 const MyQuestions = () => {
   const router = useRouter();
@@ -47,6 +45,7 @@ const MyQuestions = () => {
       console.log(err);
     }
   };
+
   useEffect(() => {
     fetchQuestions();
     checkUserToken();

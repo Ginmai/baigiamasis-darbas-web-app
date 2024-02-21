@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import cookie from "js-cookie";
-import { useRouter } from "next/router";
 import axios from "axios";
 import Card from "../components/Card/Card";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
 
 const Home = () => {
-  const router = useRouter();
   const [questions, setQuestions] = useState([]);
   const [token, setToken] = useState();
 
